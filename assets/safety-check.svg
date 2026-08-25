@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 380" role="img" aria-label="Safe driving illustration">
+  <rect width="900" height="380" rx="28" fill="#f4f7ea"/>
+  <path d="M0 270H900" stroke="#556675" stroke-width="110"/>
+  <path d="M0 270H900" stroke="#fff" stroke-width="8" stroke-dasharray="45 36"/>
+  <g transform="translate(285 100)">
+    <rect x="0" y="66" width="280" height="110" rx="38" fill="#1971b9"/>
+    <path d="M54 65l48-52h88l48 52" fill="#52a7df" stroke="#145684" stroke-width="8"/>
+    <circle cx="66" cy="180" r="34" fill="#1f2933"/><circle cx="218" cy="180" r="34" fill="#1f2933"/>
+    <path d="M72 124h136" stroke="#f5d04b" stroke-width="16" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(100 58)"><circle cx="70" cy="70" r="60" fill="#0a855d"/><path d="M40 71l20 20 42-47" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/></g>
+  <text x="450" y="342" text-anchor="middle" font-family="Arial" font-size="25" font-weight="700" fill="#39513b">Check, slow down, and drive safely</text>
+</svg>
