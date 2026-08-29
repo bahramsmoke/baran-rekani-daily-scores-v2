@@ -175,7 +175,7 @@
     function escapeHtml(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
     document.querySelectorAll('[data-action]').forEach(el=>el.addEventListener('click',e=>{const a=el.dataset.action;if(a==='start')startFlow();else if(a==='about')show('about');else if(a==='manager'){show('manager');$('managerGate').classList.remove('hidden');$('managerBoard').classList.add('hidden');$('managerPassword').value='';$('managerError').textContent=''}else if(a==='home')show('welcome')}));
     $('beginQuiz').addEventListener('click',begin);$('playerName').addEventListener('keydown',e=>{if(e.key==='Enter')begin()});$('openManager').addEventListener('click',openBoard);$('restartButton').addEventListener('click',()=>show('restart'));$('confirmRestart').addEventListener('click',()=>{if($('restartPassword').value===ADMIN_PASSWORD){localStorage.removeItem('baran-restart-lock');$('restartPassword').value='';$('restartError').textContent='';show('name')}else $('restartError').textContent=t('wrongPassword')});$('quitQuiz').addEventListener('click',()=>{if(confirm(t('quit')+'?'))show('welcome')});$('languageSelect').addEventListener('change',e=>{state.lang=e.target.value;localStorage.setItem('baran-lang',state.lang);translate();if($('quiz').classList.contains('active'))renderQuestion()});
-    translate();if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=9').then(r=>r.update()));
+    translate();if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js?v=10').then(r=>r.update()));
   })();
   </script>
 </body>
