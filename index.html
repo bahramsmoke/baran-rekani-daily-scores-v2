@@ -43,7 +43,7 @@
     </header>
     <section id="welcome" class="screen active">
       <div class="welcome-shade"><div class="welcome-hero">
-        <select id="languageSelect" class="hero-lang" aria-label="Language"><option value="bad">کوردی بادینی</option><option value="ku">کوردی سورانی</option><option value="ar">عربي</option><option value="tr">Türkçe</option><option value="fa">فارسی</option><option value="en">English</option></select>
+        <select id="languageSelect" class="hero-lang" aria-label="Language"><option value="ku">کوردی سورانی</option><option value="bad">کوردی بادینی</option><option value="ar">عربي</option><option value="tr">Türkçe</option><option value="fa">فارسی</option><option value="en">English</option></select>
         <div class="hero-card"><img class="hero-card-logo" src="assets/app-icon.png" alt="Baran Rekani logo"><div class="home-brandline"><img src="assets/app-icon.png" alt=""><span><strong>Baran Rekani</strong><small data-i18n="byline">ساخته برنامه Bahram Kurd</small></span></div><div class="hero-brand">Baran Rekani</div><div class="hero-by" data-i18n="byline">ساخته برنامه Bahram Kurd</div><h1 class="landing-title" data-i18n="welcomeTitle">بخێربێ بۆ تاقیکرنا نڤیسینگەها باران</h1><div class="hero-subtitle">BARAN REKANI DRIVING SCHOOL</div>
           <div class="landing-menu">
             <button class="landing-action" data-action="start"><span data-i18n="start">دەستپێکرنا تاقیکرنی</span></button>
@@ -63,6 +63,7 @@
     <section id="restart" class="screen"><div class="dark-screen"><div class="panel"><h1 data-i18n="restartTitle">دەستپێکردنەوە</h1><p class="lead" data-i18n="restartLead">بۆ تاقیکردنەوەی دووبارە، وشەی نهێنی بنڤیسە.</p><input id="restartPassword" class="password-input" type="password" inputmode="numeric"><div id="restartError" class="error"></div><button id="confirmRestart" class="primary-btn" data-i18n="open">بکەرەوە</button><button class="secondary-btn" data-action="home" data-i18n="back">گەڕانەوە</button></div></div></section>
   </main>
   <script src="badini-pdf-bank.js?v=20260829"></script>
+  <script src="clean-bank.js?v=20260830"></script>
   <script>
   (()=>{
     const ADMIN_PASSWORD='4848454', TEST_LENGTH=20, SECONDS=60;
@@ -152,7 +153,9 @@
     // a Badini language key, so no other language can accidentally show them.
     const badiniPdfBank=Array.isArray(window.BADINI_PDF_BANK)?window.BADINI_PDF_BANK:[];
     badiniPdfBank.forEach(q=>{if(q&&typeof q.id==='string'&&q.bad)bank.push({...q,source:'badini-pdf'})});
-    const state={lang:localStorage.getItem('baran-lang')||'bad',player:'',questions:[],answerSlots:[],index:0,correct:0,answered:0,seconds:SECONDS,timer:null,locked:false};
+    // Discard all legacy entries.  The clean bank has complete records for all six languages.
+    if(Array.isArray(window.CLEAN_OFFICIAL_BANK))bank.splice(0,bank.length,...window.CLEAN_OFFICIAL_BANK);
+    const state={lang:localStorage.getItem('baran-lang')||'ku',player:'',questions:[],answerSlots:[],index:0,correct:0,answered:0,seconds:SECONDS,timer:null,locked:false};
     const $=id=>document.getElementById(id); const dayKey=()=>new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Baghdad'}); const t=k=>ui[state.lang][k]||k;
     function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));$(id).classList.add('active');window.scrollTo(0,0);if(id!=='quiz')clearInterval(state.timer)}
     function translate(){document.documentElement.lang=state.lang;document.documentElement.dir=ui[state.lang].dir;document.querySelectorAll('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n));$('languageSelect').value=state.lang}
